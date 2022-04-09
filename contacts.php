@@ -9,6 +9,7 @@
   <a href="products.html">Products</a>
   <a href="news.html">News</a>
   <a class="active" href="contacts.php">Contact</a>
+  <a href="users.html">Users</a>
 </div>
 
 <?php

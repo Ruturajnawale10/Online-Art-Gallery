@@ -8,9 +8,10 @@
 <div class="topnav">
   <a class="active" href="index.php">Home</a>
   <a href="about.html">About</a>
-  <a href="about.html">Products</a>
+  <a href="products.html">Products</a>
   <a href="news.html">News</a>
   <a href="login.html">Contact</a>
+  <a href="users.html">Users</a>
   
 </div>
 
