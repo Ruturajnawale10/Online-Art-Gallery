@@ -25,9 +25,12 @@
 
       if (isset($_COOKIE['recently_viewed'])) {
         $recently_viewed_arr = json_decode($_COOKIE['recently_viewed'], true);
-        echo '<ul>';
-        echo '<li>' . implode('</li><li>', $recently_viewed_arr) . '</li>';
-        echo '</ul>';
+        if (count($recently_viewed_arr) > 0) {
+          echo '<ul>';
+          echo '<li>' . implode('</li><li>', $recently_viewed_arr) . '</li>';
+          echo '</ul>';
+        }
+        
       }
       ?>
     </p>
