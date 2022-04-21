@@ -6,10 +6,11 @@
 <div class="topnav">
   <a href="index.php">Home</a>
   <a href="about.html">About</a>
-  <a href="products.html">Products</a>
+  <a href="products.php">Products</a>
   <a href="news.html">News</a>
   <a class="active" href="contacts.php">Contact</a>
   <a href="users.html">Users</a>
+  <h1 class="company">Online Art Gallery</h1>
 </div>
 
 <?php
