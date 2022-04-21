@@ -17,6 +17,13 @@
 
 <div>
   <?php
+  if (!isset($_COOKIE['recently_viewed']))
+  {
+      $recently_viewed = array();
+      setcookie("recently_viewed", json_encode($recently_viewed), time()+3600, '/');
+      echo "Array in cookie being set";
+  }
+  
   $arr = json_decode($_COOKIE['recently_viewed'], true);
   $title = "River Land Meets 9012 Painting";
   if (($key = array_search($title, $arr)) !== false) {
