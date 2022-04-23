@@ -16,6 +16,7 @@
 
 </div>
 
+<br><br>
 <h1>Users on our Art Gallery website</h1>
 <?php
 $servername = "localhost";
@@ -61,8 +62,85 @@ if ($result->num_rows > 0) {
 } else {
     echo "<h1>No users registered</h1>";
 }
-echo "</table>";
+echo "</table> <hr class='solid'/> <br><br>";
 
+?>
+
+<div class="row people">
+<h1 class="text-center">Users from Roshan's Electron website</h1>
+<?php
+    ini_set('display_errors', 'On');
+    error_reporting(E_ALL);
+
+    $cURLConnection = curl_init();
+
+    curl_setopt($cURLConnection, CURLOPT_URL, 'http://roshanchokshi.000webhostapp.com/users.php');
+    curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+    $userList = curl_exec($cURLConnection);
+    curl_close($cURLConnection);
+
+    $jsonArrayResponse = json_decode($userList);
+    echo '<table id="customers">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Home Address</th>
+    <th>Home Phone</th>
+    <th>Cell Phone</th>
+  </tr>
+  ';
+  
+   foreach ($jsonArrayResponse as $user) {
+        echo '
+    <tr>
+    <td>' . $user->firstname . ' ' . $user->lastname . '</td>' .
+            '<td>' . $user->email . '</td>' .
+            '<td>' . $user->homeaddress . '</td>' .
+            '<td>' . $user->homephone . '</td>' .
+            '<td>' . $user->cellphone . '</td>
+    </tr>';
+    }
+    echo "</table> <hr class='solid'/> <br><br>";
+?>
+
+
+<div class="row people">
+<h1 class="text-center">Users from Hanyu's's Fishtecho website</h1>
+<?php
+    ini_set('display_errors', 'On');
+    error_reporting(E_ALL);
+
+    $cURLConnection = curl_init();
+
+    curl_setopt($cURLConnection, CURLOPT_URL, 'https://fishtecho.com/html/json_users.php');
+    curl_setopt($cURLConnection, CURLOPT_RETURNTRANSFER, true);
+
+    $userList = curl_exec($cURLConnection);
+    curl_close($cURLConnection);
+    
+    $jsonArrayResponse = json_decode($userList);
+    echo '<table id="customers">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Home Address</th>
+    <th>Home Phone</th>
+    <th>Cell Phone</th>
+  </tr>
+  ';
+  
+   foreach ($jsonArrayResponse as $user) {
+        echo '
+    <tr>
+    <td>' . $user->fname . ' ' . $user->lname . '</td>' .
+            '<td>' . $user->email . '</td>' .
+            '<td>' . $user->address . '</td>' .
+            '<td>' . $user->hphone . '</td>' .
+            '<td>' . $user->cphone . '</td>
+    </tr>';
+    }
+    echo "</table>";
 ?>
 
 </html>

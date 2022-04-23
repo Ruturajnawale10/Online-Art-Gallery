@@ -1,3 +1,27 @@
+<?php
+if (!isset($_COOKIE['recently_viewed'])) {
+  $recently_viewed = array();
+  setcookie("recently_viewed", json_encode($recently_viewed), time() + 60 * 60 * 24 * 30, '/');  //1 day expiry
+}
+
+$arr = json_decode($_COOKIE['recently_viewed'], true);
+$title = "Abstract 0009 Painting";
+if (($key = array_search($title, $arr)) !== false) {
+  unset($arr[$key]);
+  array_unshift($arr, $title);
+  setcookie("recently_viewed", json_encode($arr), time() + 3600, '/');
+} else {
+  $len = count($arr);
+  if ($len < 5) {
+    array_unshift($arr, $title);
+    setcookie("recently_viewed", json_encode($arr), time() + 3600, '/');
+  } else {
+    array_pop($arr);
+    array_unshift($arr, $title);
+    setcookie("recently_viewed", json_encode($arr), time() + 3600, '/');
+  }
+} ?>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="../style.css" />
@@ -16,33 +40,6 @@
 </div>
 
 <div>
-  <?php
-  if (!isset($_COOKIE['recently_viewed']))
-  {
-      $recently_viewed = array();
-      setcookie("recently_viewed", json_encode($recently_viewed), time()+3600, '/');
-      echo "Array in cookie being set";
-  }
-  
-  $arr = json_decode($_COOKIE['recently_viewed'], true);
-  $title = "Abstract 0009 Painting";
-  if (($key = array_search($title, $arr)) !== false) {
-    unset($arr[$key]);
-    array_unshift($arr, $title);
-    setcookie("recently_viewed", json_encode($arr), time() + 3600, '/');
-  } else {
-    $len = count($arr);
-    if ($len < 5) {
-      array_unshift($arr, $title);
-      setcookie("recently_viewed", json_encode($arr), time() + 3600, '/');
-    } else {
-      array_pop($arr);
-      array_unshift($arr, $title);
-      setcookie("recently_viewed", json_encode($arr), time() + 3600, '/');
-    }
-  }
-  ?>
-
   <div class="container overview">
     <div class="row" style="margin-top: 20px">
       <div class="col-auto">
